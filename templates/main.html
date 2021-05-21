@@ -1,0 +1,42 @@
+{% macro group(title, status) -%}
+<div class="group {{ status }}">
+    <div class="title">{{ title }}</div>
+    {{ caller() }}
+</div>
+{%- endmacro %}
+
+{% macro item(name, status, status_text) -%}
+<div class="item {{ status }}">
+    <div class="title">{{ name }}</div>
+    <div class="status">{{ status_text }}</div>
+</div>
+{%- endmacro %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ system_name }} | Flightdek</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+        {{ include_file('main.css') }}
+    </style>
+</head>
+<body>
+    <div class="header {{ status }}">
+        <div class="banner">
+            {{ summary }}
+            <div class="details">{{ last_update }}</div>
+        </div>
+    </div>
+
+    <div class="groups">
+        {%- for g in groups.values() %}
+        {% call group(g.title, g.status) %}
+            {%- for i in g['items'].values() %}
+            {{ item(i.name, i.status, i.status_text) }}
+            {%- endfor %}
+        {% endcall %}
+        {%- endfor %}
+    </div>
+</body>
+</html>

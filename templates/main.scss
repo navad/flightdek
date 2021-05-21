@@ -1,0 +1,163 @@
+$bg-color: #eef1f5;
+$success-color: #93da84;
+$success-color-dark: darken($success-color, 30%);
+$warn-color: #ff9f1c;
+$warn-color-dark: darken($warn-color, 10%);
+$error-color: #fd4144;
+$error-color-dark: darken($error-color, 15%);
+
+// @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+
+html, body {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+body {
+    background-color: $bg-color;
+
+    > .header {
+        position: static;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.ok {
+            background-color: $success-color;
+            border-bottom: 1px solid darken($success-color, 5%);
+        }
+
+        &.warn {
+            background-color: $warn-color;
+            border-bottom: 1px solid darken($warn-color, 5%);
+        }
+
+        &.error {
+            background-color: $error-color;
+            border-bottom: 1px solid darken($error-color, 5%);
+        }
+
+        .banner {
+            width: 90%;
+            max-width: 800px;
+            font-size: 2.5rem;
+            color: white;
+
+            .details {
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    > .groups {
+        box-sizing: border-box;
+        width: 90%;
+        max-width: 800px;
+        margin: auto;
+        margin-top: -20px;
+
+        .group {
+            padding: 10px;
+            padding-bottom: 5px;
+            padding-top: 8px;
+
+            background-color: white;
+            border-radius: 3px;
+            // border: 1px solid darken($bg-color, 5%);
+            // box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.20);
+            margin-bottom: 15px;
+
+            > .title {
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            &.ok {
+                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.20), inset 0px 3px 0px 0px $success-color-dark;
+            }
+
+            &.warn {
+                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.20), inset 0px 3px 0px 0px $warn-color-dark;
+            }
+
+            &.error {
+                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.20), inset 0px 3px 0px 0px $error-color-dark;
+            }
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+
+            > .item {
+                // margin-left: 15px;
+                display: flex;
+                align-items: center;
+                height: 30px;
+                border-bottom: 1px solid $bg-color;
+                font-size: 0.9rem;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+
+                .title {
+                    flex: 1 1 auto;
+                }
+
+                .status {
+                    flex: 0 0 auto;
+                    text-transform: uppercase;
+                    font-size: 0.5rem;
+                    border: 1px solid black;
+                    border-radius: 2px;
+                    padding: 2px;
+                }
+
+                &.ok .status {
+                    color: $success-color-dark;
+                    border-color: $success-color-dark;
+                }
+
+                &.warn .status {
+                    color: $warn-color-dark;
+                    border-color: $warn-color-dark;
+                }
+
+                &.error .status {
+                    color: $error-color-dark;
+                    border-color: $error-color-dark;
+                }
+
+            }
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        > .groups {
+            max-width: unset;
+            margin-top: -10px;
+        }
+
+        > .header {
+            height: 120px;
+
+            > .banner {
+                // width: 90%;
+                max-width: unset;
+                font-size: 2rem;
+            }
+        }
+    }
+
+}
+

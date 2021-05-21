@@ -1,0 +1,18 @@
+namespace: flightdek
+name: core
+version: 1.0.0
+readme: README.md
+authors:
+  - Nadav Tau <nadavt@gmail.com>
+description: Create beautiful status pages directly from Ansible
+repository: https://github.com/navad/flightdek
+documentation: https://github.com/navad/flightdek
+homepage: https://github.com/navad/flightdek
+issues: https://github.com/navad/flightdek/issues
+license:
+  - MIT
+tags:
+  - status
+  - page
+  - system
+  - IT
