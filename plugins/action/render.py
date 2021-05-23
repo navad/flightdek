@@ -58,11 +58,12 @@ class ActionModule(FlightdekActionBase):
         )
 
         filename = self.args.get('filename', f'status_{int(now.timestamp())}.html')
+        full_filename = path.join(self.output_folder, filename)
 
-        with open(path.join(self.output_folder, filename), 'w') as f:
+        with open(full_filename, 'w') as f:
             env = get_env()
             t = env.get_template('main.html')
             f.write(t.render(asdict(template_data)))
 
-        return dict(ansible_facts={ })
+        return dict(status_page_file=full_filename)
 
