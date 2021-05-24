@@ -61,4 +61,4 @@ localhost ansible_connection=local
 (venv)$ ansible-playbook -i hosts playbook.yml
 ```
 
-After the playbook finishes running, Flihtdek's status page will be opened by the browser
+After the playbook finishes running, Flightdek's status page will be opened by the browser
