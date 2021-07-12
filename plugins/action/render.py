@@ -3,8 +3,8 @@ from sqlite3.dbapi2 import Error
 from typing import Dict
 from os import path
 from datetime import datetime, timedelta
-
 from dataclasses import asdict
+import json
 
 from ansible_collections.flightdek.core.templates import get_env
 from ansible_collections.flightdek.core.plugins.action import FlightdekActionBase, Status, StatusText, StatusStrength, TemplateData, Group, Item
@@ -28,7 +28,9 @@ class ActionModule(FlightdekActionBase):
         groups: Dict[str, Group] = dict()
 
         for row in cursor:
-            (_, item_type, name, group, status, extra, date_added) = row
+            (_, item_type, name, group, status, extra_str, date_added) = row
+            extra = json.loads(extra_str) if extra_str is not None else { }
+
             current_group = groups.get(group, Group(
                 title=group if group is not None else 'Ungrouped',
                 status=Status.OK,
@@ -39,7 +41,8 @@ class ActionModule(FlightdekActionBase):
                 current_group.items[name] = Item(
                     name=name,
                     status=status,
-                    status_text=StatusText[status]
+                    quick_info=extra.get('quick_info', None),
+                    detailed_info=extra.get('detailed_info', None)
                 )
 
                 most_severe_item = max(current_group.items.values(), key=lambda x: StatusStrength.index(x.status))

@@ -29,7 +29,8 @@ StatusStrength = [
 class Item:
     name: str
     status: Status
-    status_text: str
+    quick_info: Optional[str]
+    detailed_info: Optional[str]
 
 @dataclass
 class Group:
