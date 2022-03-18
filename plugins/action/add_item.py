@@ -14,6 +14,7 @@ class ActionModule(FlightdekActionBase):
         is_warn = bool(self.args.get('warn_when', False))
 
         quick_info = self.args.get('quick_info', None)
+        detailed_info = self.args.get('detailed_info', None)
 
         status = Status.OK
         if is_warn:
@@ -26,6 +27,9 @@ class ActionModule(FlightdekActionBase):
 
         if quick_info:
             extra['quick_info'] = quick_info
+
+        if detailed_info:
+            extra['detailed_info'] = detailed_info
 
         cursor.execute('insert into items values (:id, :type, :name, :group, :status, :extra, :date_added)', {
             'id': None,

@@ -1,3 +1,4 @@
+[ ] Favicon
 [ ] DB Cleanup task
 [ ] Item description + markdown
 [ ] Auto duration, since last render

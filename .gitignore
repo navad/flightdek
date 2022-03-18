@@ -1,3 +1,4 @@
 *.pyc
+templates/main.css
 venv
 UI

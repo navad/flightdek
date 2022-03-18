@@ -6,7 +6,7 @@ $warn-color-dark: darken($warn-color, 10%);
 $error-color: #fd4144;
 $error-color-dark: darken($error-color, 15%);
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Source+Code+Pro&display=swap');
 
 @mixin ellipsis() {
     white-space: nowrap;
@@ -105,86 +105,103 @@ body {
                 > .item {
                     padding-left: 5px;
                     padding-right: 5px;
-                    display: flex;
-                    align-items: baseline;
-                    height: 30px;
-                    line-height: 30px;
-                    font-size: 0.9rem;
-                    transition: background-color 0.15s ease-in-out;
                     border-bottom: 1px solid #eee;
+                    font-size: 0.9rem;
 
-                    .title {
-                        flex: 1 1 auto;
+                    > .header {
+                        display: flex;
+                        align-items: baseline;
+                        height: 30px;
+                        line-height: 30px;
+                        transition: background-color 0.15s ease-in-out;
 
-                        &:after {
-                            transition: opacity 0.15s ease-in-out;
-                            margin-left: 5px;
+                        .title {
+                            flex: 1 1 auto;
+
+                            &:after {
+                                transition: opacity 0.15s ease-in-out;
+                                margin-left: 5px;
+                                font-size: 0.8rem;
+                                opacity: 0;
+                            }
+                        }
+
+                        .status {
+                            flex: 0 0 10px;
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                            margin-right: 5px;
+                        }
+
+                        .quick-info {
                             font-size: 0.8rem;
-                            opacity: 0;
+                            max-width: 60%;
+                            @include ellipsis();
                         }
                     }
 
-                    .status {
-                        flex: 0 0 10px;
-                        width: 10px;
-                        height: 10px;
-                        border-radius: 50%;
-                        margin-right: 5px;
-                    }
-
-                    .quick-info {
+                    > .content {
+                        padding: 5px;
+                        padding-left: 15px;
+                        margin: 0px;
+                        font-family: 'Source Code Pro', monospace;
                         font-size: 0.8rem;
-                        max-width: 60%;
-                        @include ellipsis();
                     }
 
                     &.ok {
-                        > .status {
-                            background-color: $success-color;
-                        }
+                        > .header {
+                            > .status {
+                                background-color: $success-color;
+                            }
 
-                        > .title:after {
-                            color: #aaa;
-                            content: '― Operational';
+                            > .title:after {
+                                color: #aaa;
+                                content: '- Operational';
+                            }
                         }
                     }
 
                     &.warn {
-                        > .status {
-                            background-color: $warn-color;
-                            border-radius: 2px;
-                        }
+                        > .header {
+                            > .status {
+                                background-color: $warn-color;
+                                border-radius: 2px;
+                            }
 
-                        > .title:after {
-                            color: $warn-color;
-                            content: '― Warning';
-                        }
+                            > .title:after {
+                                color: $warn-color;
+                                content: '- Warning';
+                            }
 
-                        > .quick-info {
-                            color: $warn-color-dark;
+                            > .quick-info {
+                                color: $warn-color-dark;
+                            }
                         }
                     }
 
                     &.error {
-                        .status {
-                            background-color: $error-color;
-                            border-radius: 2px;
-                        }
+                        > .header {
+                            > .status {
+                                background-color: $error-color;
+                                border-radius: 2px;
+                            }
 
-                        > .title:after {
-                            color: $error-color;
-                            content: '― Error';
-                        }
+                            > .title:after {
+                                color: $error-color;
+                                content: '- Error';
+                            }
 
-                        > .quick-info {
-                            color: $error-color-dark;
+                            > .quick-info {
+                                color: $error-color-dark;
+                            }
                         }
                     }
 
                     &:hover {
                         background: #eee;
 
-                        > .title:after {
+                        > .header > .title:after {
                             opacity: 1;
                         }
                     }
